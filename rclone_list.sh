@@ -5,8 +5,8 @@
 
 # Check if an HTTP URL is provided as an argument
 if [ -z "$1" ]; then
-    echo "Usage: $0 <http_url> [additional filters]"
-    echo "Example: $0 http://example.com + \"*Japan*\" - \"*Europe*\""
+    echo "Usage: $0 <http_url> [ optional additional filters]"
+    echo "Example: $0 http://example.com \"+ *Japan*\" \"- *Europe*\""
     exit 1
 fi
 
@@ -22,18 +22,18 @@ for filter in "$@"; do
     USER_FILTERS+=(--filter "$filter")
 done
 
-# Default filter options
+# Starting filter options
 DEFAULT_FILTERS=(
-    --filter '- *beta*'
-    --filter '- *proto*'
-    --filter '- *aftermarket*'
-    --filter '- *demo*'
-    --filter '- *pirate*'
-    --filter '- *virtual console*'
-    --filter '- *rev*'
-	--filter '- *unl*'
-	--filter '+ *USA*'
-	--filter '- *'
+    --filter '- *beta*' 
+    --filter '- *proto*' 
+    --filter '- *aftermarket*' 
+    --filter '- *demo*' 
+    --filter '- *pirate*' 
+    --filter '- *virtual console*' 
+    --filter '- *rev*' 
+	--filter '- *unl*' 
+	--filter '+ *USA*'         
+	--filter '- *' 
 )
 
 # Combine user-provided filters and default filters, with user filters first

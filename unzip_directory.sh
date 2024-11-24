@@ -10,17 +10,26 @@ fi
 SOURCE_DIR="$1"
 DEST_DIR="$2"
 
+# Prompt for confirmation to delete zip files after extraction
+echo "Do you want to delete zip files after extraction? (y/n)"
+read -r delete_response
+
 # Create the destination directory if it doesn’t exist
 mkdir -p "$DEST_DIR"
 
-# Loop through each .zip file in the source directory and unzip it in the background
+# Loop through each .zip file in the source directory and unzip it
 for file in "$SOURCE_DIR"/*.zip; do
     # Check if the file exists (in case there are no zip files)
     if [ -f "$file" ]; then
-        # Unzip the file to the destination directory in the background
+        # Unzip the file to the destination directory
         unzip -o "$file" -d "$DEST_DIR"
-		rm "$file"
-		echo "$(basename "$file") Unzipped and Deleted"
+        # Conditionally delete the zip file based on user response
+        if [[ "$delete_response" == "y" || "$delete_response" == "yes" ]]; then
+            rm "$file"
+            echo "$(basename "$file") Unzipped and Deleted"
+        else
+            echo "$(basename "$file") Unzipped"
+        fi
     fi
 done
 

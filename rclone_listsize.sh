@@ -14,10 +14,18 @@ convert_to_human_readable() {
     fi
 }
 
+# Prompt for confirmation
+echo "This script will read file size and may take a while to process depending on size of directory, proceed? (y/n)"
+read -r response
+if [[ "$response" != "yes" && "$response" != "y" ]]; then
+    echo "Operation cancelled."
+    exit 0
+fi
+
 # Check if an HTTP URL is provided as an argument
 if [ -z "$1" ]; then
     echo "Usage: $0 <http_url> [additional filters]"
-    echo "Example: $0 http://example.com + \"*Japan*\" - \"*Europe*\""
+    echo "Example: $0 http://example.com \"+ *Japan*\" \"- *Europe*\""
     exit 1
 fi
 
@@ -55,6 +63,7 @@ item_list=$(rclone ls \
     "${FILTER_OPTIONS[@]}" \
     --ignore-case \
     --http-url="$HTTP_URL" :http: 2>&1)
+    
 
 # Check if the rclone command succeeded
 if [ $? -ne 0 ]; then
