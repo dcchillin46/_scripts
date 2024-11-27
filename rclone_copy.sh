@@ -28,7 +28,7 @@ for filter in "$@"; do
     fi
 done
 
-# Default filter options
+# Default filter options. Remove or modify as desired.
 DEFAULT_FILTERS=(
     --filter '- *beta*'
     --filter '- *proto*'
