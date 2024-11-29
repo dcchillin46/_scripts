@@ -12,7 +12,7 @@
 </ul>
     
 <h2 align="left">Usage</h2>
-<p>Download the scripts and extract them in any directory. You can pass target directories as arguments when starting a script. They're .bash scripts, so you should probably be using a Linux machine or WSL. You will also need rclone installed. In the terminal, navigate to the script directory.</p>
+<p>Download the scripts and extract them in any directory. You can pass target directories as arguments when starting a script. They're shell scripts, so you should probably be using a Linux machine or WSL. You will also need rclone installed. In the terminal, navigate to the script directory.</p>
 
 <p><b>Typical Workflow:</b>
 <ol>
