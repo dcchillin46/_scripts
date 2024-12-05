@@ -35,10 +35,12 @@ for chd_file in *.chd; do
     # Get the base name of the .chd file without the extension
     base_name="${chd_file%.chd}"
 
-    # Find and delete all related files except .chd
+    # Find and delete all related files using wildcards
     for ext in bin cue iso; do
-        file="${base_name}.${ext}"
-        if [ -f "$file" ]; then
+        for file in "${base_name}"*."${ext}"; do
+            # Skip if no matching files are found
+            [ -e "$file" ] || continue
+
             if [ "$approve_all" = false ]; then
                 echo "Found: $file. Delete? [y/n/a (approve all)]"
                 read -r response
@@ -63,7 +65,7 @@ for chd_file in *.chd; do
                 echo "Deleting $file"
                 rm "$file"
             fi
-        fi
+        done
     done
 done
 
