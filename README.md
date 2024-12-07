@@ -84,6 +84,16 @@
     </ul>
 </ul>
 
+<h3>directory_clean.sh:</h3>
+<p>Scans directory for similar file titles, such as "Rev 1", "re-release", and files included in 2-in-1 packs. Prompts the user to decide which files to delete.</p>
+<ul>
+    <li><b>Usage:</b> directory_clean.sh &lt;target_directory&gt;</li>
+    <li><b>Example:</b> directory_clean.sh /path/to/directory</li>
+    <ul>
+        <li>Option to approve or deny each file individually.</li>
+    </ul>
+</ul>
+
 <br><br><br><br>
 
 <h5>Other Stuff</h5>
